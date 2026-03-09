@@ -42,7 +42,7 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="w-full py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl lg:max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center mb-16">
             <h2 className="section-title">Nos services</h2>
             <p className="section-subtitle">
@@ -77,7 +77,7 @@ export default function HomePage() {
 
       {/* Réalisations Preview Section */}
       <section className="w-full py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl lg:max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center mb-16">
             <h2 className="section-title">Nos réalisations</h2>
             <p className="section-subtitle">
@@ -124,7 +124,9 @@ export default function HomePage() {
                     Projet 01
                   </p>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-900 tracking-tight">
-                    Toiture : assainissement complet et barrière protectrice
+                    Toiture : assainissement complet
+                    <br />
+                    et barrière protectrice
                   </h3>
                   <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed flex-1">
                     Nettoyage en profondeur, traitement des micro-organismes et application d&apos;un hydrofuge durable pour une toiture saine
@@ -199,7 +201,9 @@ export default function HomePage() {
                     Projet 02
                   </p>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-900 tracking-tight">
-                    Façade : nettoyage profond et traitement des traces d&apos;humidité
+                    Façade : nettoyage profond
+                    <br />
+                    et traitement des traces d&apos;humidité
                   </h3>
                   <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed flex-1">
                     Suppression des traces d&apos;humidité, des salissures et des micro-organismes pour redonner à vos murs une protection saine
@@ -271,7 +275,9 @@ export default function HomePage() {
                     Projet 03
                   </p>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-900 tracking-tight">
-                    Pierre : restauration des joints et mise en valeur architecturale
+                    Pierre : restauration des joints
+                    <br />
+                    et mise en valeur architecturale
                   </h3>
                   <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed flex-1">
                     Reprise des joints, piquetage et finitions soignées pour préserver le cachet de la pierre apparente et mettre en valeur

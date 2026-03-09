@@ -3,29 +3,101 @@ import Link from 'next/link'
 
 export function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-b from-slate-700 via-slate-800 to-slate-950 text-white pt-16 pb-10">
+    <footer className="w-full bg-gradient-to-b from-slate-700 via-slate-800 to-slate-950 text-white pt-12 pb-8 md:pt-16 md:pb-10">
       <div className="max-w-6xl mx-auto px-4">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-10">
           {/* Column 1: Logo & About */}
-          <div className="flex flex-col gap-4">
-            <div className="inline-flex items-center justify-center rounded-2xl bg-white/6 border border-slate-600/60 px-5 py-3 shadow-[0_14px_40px_rgba(15,23,42,0.6)]">
+          <div className="flex flex-col gap-4 items-center text-center md:items-start md:text-left">
+            <div className="inline-flex items-center justify-center rounded-2xl bg-white/6 border border-slate-600/60 px-4 py-2 md:px-5 md:py-3 shadow-[0_14px_40px_rgba(15,23,42,0.6)]">
               <Image
                 src="/images/logo.png"
                 alt="VR Harmonie"
                 width={120}
                 height={120}
-               
+                className="h-10 w-auto md:h-12"
                 priority
               />
             </div>
             <p className="text-slate-300 text-sm leading-relaxed max-w-xs">
               VR Harmonie : Artisans de père en fils depuis 25 ans. Expertise en toiture, façades et patrimoine.
             </p>
+
+            {/* Version mobile : 3 colonnes Navigation / Services / Contact */}
+            <div className="mt-6 grid grid-cols-3 gap-4 text-left text-xs md:hidden">
+              <div>
+                <h4 className="font-semibold text-white mb-2 text-[10px] uppercase tracking-[0.22em]">
+                  Navigation
+                </h4>
+                <ul className="space-y-1">
+                  <li>
+                    <Link href="/" className="text-slate-400 hover:text-white transition-colors">
+                      Accueil
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
+                      Nos Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/realisations" className="text-slate-400 hover:text-white transition-colors">
+                      Réalisations
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/a-propos" className="text-slate-400 hover:text-white transition-colors">
+                      À propos
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white mb-2 text-[10px] uppercase tracking-[0.22em]">
+                  Services
+                </h4>
+                <ul className="space-y-1">
+                  <li>
+                    <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
+                      Toiture
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
+                      Façades
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
+                      Patrimoine
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white mb-2 text-[10px] uppercase tracking-[0.22em]">
+                  Contact
+                </h4>
+                <ul className="space-y-1">
+                  <li className="text-slate-300">
+                    <span className="block font-semibold text-[11px] text-white">Tél.</span>
+                    <a href="tel:+33788557295" className="hover:text-white transition-colors">
+                      07&nbsp;88&nbsp;55&nbsp;72&nbsp;95
+                    </a>
+                  </li>
+                  <li className="text-slate-300">
+                    <span className="block font-semibold text-[11px] text-white">Zone</span>
+                    <span>Indre-et-Loire et Loir-et-Cher</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* Column 2: Navigation */}
-          <div>
+          <div className="hidden md:block">
             <h4 className="font-semibold text-white mb-4 text-xs uppercase tracking-[0.22em]">
               Navigation
             </h4>
@@ -59,7 +131,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Services */}
-          <div>
+          <div className="hidden md:block">
             <h4 className="font-semibold text-white mb-4 text-xs uppercase tracking-[0.22em]">
               Services
             </h4>
@@ -88,7 +160,7 @@ export function Footer() {
           </div>
 
           {/* Column 4: Contact */}
-          <div>
+          <div className="hidden md:block">
             <h4 className="font-semibold text-white mb-4 text-xs uppercase tracking-[0.22em]">
               Contact
             </h4>

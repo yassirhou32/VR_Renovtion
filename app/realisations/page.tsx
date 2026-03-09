@@ -70,7 +70,7 @@ export default function RealisationsPage() {
 
       {/* Projects Gallery */}
       <section className="w-full py-20 bg-gradient-to-b from-white via-slate-50 to-slate-100">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl lg:max-w-7xl mx-auto px-4 lg:px-6">
           <h2 className="section-title mb-3">Nos réalisations</h2>
           <p className="section-subtitle mb-16">
             Nettoyage et protection de toiture, rénovation de façades techniques et restauration de pierre apparente : nos chantiers illustrent
@@ -113,16 +113,18 @@ export default function RealisationsPage() {
                   </div>
 
                   <div className="relative p-6 md:p-7 flex flex-col flex-1 gap-3">
-                    {/* petite étiquette projet */}
-                    <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400">
-                      Projet 0{index + 1}
-                    </p>
-                    <h3 className="text-lg md:text-xl font-semibold text-slate-900 tracking-tight">
-                      {project.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed flex-1">
-                      {project.description}
-                    </p>
+                    {/* Bloc texte pour aligner Projet + titre + description */}
+                    <div className="flex flex-col gap-2 flex-1">
+                      <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400">
+                        Projet 0{index + 1}
+                      </p>
+                      <h3 className="text-base md:text-[20px] lg:text-[22px] font-semibold text-slate-900 tracking-tight min-h-[3.2rem] whitespace-normal md:whitespace-nowrap">
+                        {project.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed min-h-[5.6rem]">
+                        {project.description}
+                      </p>
+                    </div>
                     {/* ligne de “tags” premium */}
                     <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-500">
                       <span className="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-1 bg-slate-50/70">

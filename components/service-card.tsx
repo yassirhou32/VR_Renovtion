@@ -47,7 +47,7 @@ export function ServiceCard({
         )}
 
         {/* Title */}
-        <h3 className="text-lg md:text-[22px] font-semibold text-slate-900 tracking-tight group-hover:text-slate-950">
+        <h3 className="text-base md:text-[20px] lg:text-[22px] font-semibold text-slate-900 tracking-tight group-hover:text-slate-950 whitespace-normal md:whitespace-nowrap">
           {title}
         </h3>
 

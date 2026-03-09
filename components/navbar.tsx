@@ -69,30 +69,60 @@ export function Navbar() {
         {/* Mobile Menu */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="rounded-full bg-white shadow-sm border border-slate-200">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full bg-white shadow-sm border border-slate-200"
+            >
               <Menu className="w-5 h-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-64 bg-white border-l border-slate-200">
-            <div className="flex flex-col gap-6 mt-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors"
-                  onClick={() => setIsOpen(false)}
+          <SheetContent
+            side="right"
+            className="w-72 bg-gradient-to-b from-white via-slate-50 to-white border-l border-slate-200 px-6 py-6"
+          >
+            <div className="mt-6 flex flex-col gap-6">
+              <div className="space-y-1">
+                <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-slate-400">
+                  Navigation
+                </p>
+              </div>
+
+              <nav className="flex flex-col gap-4">
+                {navItems.map((item) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors ${
+                        isActive
+                          ? 'text-slate-900'
+                          : 'text-slate-700 hover:text-slate-900'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </nav>
+
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+              <div className="space-y-3">
+                <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-slate-400">
+                  Contact
+                </p>
+                <Button
+                  asChild
+                  className="bg-slate-900 hover:bg-slate-800 text-white rounded-full w-full text-sm font-semibold shadow-[0_14px_40px_rgba(15,23,42,0.5)]"
                 >
-                  {item.label}
-                </Link>
-              ))}
-              <Button
-                asChild
-                className="bg-slate-900 hover:bg-slate-800 text-white rounded-full w-full text-sm font-semibold"
-              >
-                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                  Demandez un devis
-                </Link>
-              </Button>
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                    Demandez un devis
+                  </Link>
+                </Button>
+              </div>
             </div>
           </SheetContent>
         </Sheet>
