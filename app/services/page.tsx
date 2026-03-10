@@ -146,6 +146,234 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Parcours de service très lisible (étapes) */}
+      <section className="w-full py-20 bg-white text-slate-900 relative overflow-hidden">
+        {/* léger décor de la section, en nuances de bleu très doux */}
+        <div className="pointer-events-none absolute inset-x-0 -top-32 h-60 bg-[radial-gradient(circle_at_top,rgba(191,219,254,0.8),transparent_65%)]" />
+        <div className="pointer-events-none absolute -bottom-32 -right-24 h-64 w-64 rounded-full bg-sky-100/80 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -left-24 h-64 w-64 rounded-full bg-cyan-100/70 blur-3xl" />
+
+        <div className="relative max-w-6xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-50 px-4 py-1.5 text-[11px] font-semibold tracking-[0.22em] uppercase text-sky-700 mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-500 shadow-[0_0_0_4px_rgba(59,130,246,0.35)]" />
+              Parcours client VR Harmonie
+            </div>
+            <h2 className="section-title">Comment se déroule votre projet ?</h2>
+            <p className="section-subtitle">
+              Un parcours simple, transparent et accompagné du premier appel jusqu&apos;au suivi après travaux.
+            </p>
+          </div>
+
+          <div className="relative grid gap-10 lg:grid-cols-[1.6fr_minmax(0,1fr)] items-start">
+            {/* Trait lumineux vertical à gauche */}
+            <div className="pointer-events-none absolute -left-6 top-12 bottom-8 hidden lg:block">
+              <div className="h-full w-px bg-gradient-to-b from-sky-400/50 via-slate-700/50 to-cyan-400/40" />
+            </div>
+
+            {/* Timeline principale */}
+            <div className="relative px-6 py-7 md:px-8 md:py-9">
+              {/* halo discret */}
+              <div className="pointer-events-none absolute -top-16 -left-4 h-40 w-40 rounded-full bg-sky-100/80 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-20 -right-10 h-44 w-44 rounded-full bg-cyan-100/70 blur-3xl" />
+
+              <p className="relative text-[11px] font-semibold tracking-[0.22em] uppercase text-sky-600 mb-5 flex items-center gap-2">
+                <span className="inline-flex h-1 w-6 rounded-full bg-gradient-to-r from-sky-500 via-sky-300 to-cyan-400" />
+                Parcours d&apos;accompagnement
+              </p>
+
+              <ol className="relative space-y-6 md:space-y-7">
+                {[
+                  {
+                    step: '01',
+                    label: 'Découverte',
+                    title: 'Prise de contact & échange téléphonique',
+                    desc: "Vous nous expliquez la situation de votre toiture, façade ou murs en pierre. Nous posons les bonnes questions pour préparer la visite sur place.",
+                  },
+                  {
+                    step: '02',
+                    label: 'Analyse',
+                    title: 'Diagnostic technique sur place',
+                    desc: "Inspection détaillée des supports, photos, contrôle de la porosité et de l&apos;état des matériaux. Nous identifions les causes réelles des désordres (mousses, humidité, champignons…).",
+                  },
+                  {
+                    step: '03',
+                    label: 'Clarté',
+                    title: 'Proposition claire et devis détaillé',
+                    desc: "Vous recevez un devis précis, avec la description pas à pas des interventions, les produits utilisés et la durée de protection estimée.",
+                  },
+                  {
+                    step: '04',
+                    label: 'Réalisation',
+                    title: 'Réalisation des travaux par l’artisan',
+                    desc: "Les chantiers sont réalisés par notre équipe, sans sous-traitance. Nous protégeons les abords, respectons vos extérieurs et tenons les délais annoncés.",
+                  },
+                  {
+                    step: '05',
+                    label: 'Suivi',
+                    title: 'Contrôle final, photos & garantie',
+                    desc: "Nous effectuons une visite de contrôle avec vous, livrons les photos avant / après ainsi que la garantie écrite pouvant aller jusqu&apos;à 15 ans.",
+                  },
+                ].map((item, index) => (
+                  <li
+                    key={index}
+                    className="relative pl-14 pr-3 py-3 rounded-2xl border border-transparent hover:border-sky-200/80 hover:bg-sky-50/70 transition-colors duration-300"
+                  >
+                    {/* ligne verticale animée */}
+                    <div className="pointer-events-none absolute left-6 top-3 bottom-3 w-px">
+                      <div className="h-full w-px bg-gradient-to-b from-sky-400/80 via-slate-700/80 to-cyan-400/80" />
+                    </div>
+
+                    {/* pastille double cercle seule (numéro) */}
+                    <div className="absolute left-0 top-2 flex items-center justify-center">
+                      <div className="relative flex h-9 w-9 items-center justify-center">
+                        <div className="absolute inset-0 rounded-full bg-sky-400/15 blur-[6px]" />
+                        <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white border border-sky-400 shadow-[0_0_0_1px_rgba(15,23,42,0.08),0_10px_30px_rgba(15,23,42,0.18)]">
+                          <span className="text-[11px] font-semibold text-sky-600">{item.step}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-sm md:text-[15px] font-semibold text-slate-900 tracking-tight">{item.title}</h3>
+                        <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-sky-700">
+                          {item.label}
+                        </span>
+                      </div>
+                      <p className="text-xs md:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            {/* Bloc récapitulatif / garanties */}
+            <div className="space-y-5">
+              <div className="relative rounded-[28px] bg-white/85 backdrop-blur-md border border-sky-200/80 px-6 py-6 md:px-7 md:py-7 shadow-[0_20px_60px_rgba(15,23,42,0.18)] overflow-hidden">
+                {/* halo et motif de points */}
+                <div className="pointer-events-none absolute -top-16 right-[-20px] h-40 w-40 rounded-full bg-sky-500/22 blur-3xl" />
+                <div className="pointer-events-none absolute right-4 bottom-5 grid grid-cols-3 gap-1.5 opacity-70">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-300/90" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-slate-300/80" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-slate-400/80" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-300/90" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80" />
+                </div>
+
+                <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-4 tracking-tight">
+                  Vos garanties avec VR Harmonie
+                </h3>
+                <ul className="space-y-3.5 text-sm text-slate-700">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-sky-400/15 text-[12px] text-sky-300 border border-sky-300/70">
+                      ✓
+                    </span>
+                    <p>
+                      Travaux réalisés par l&apos;artisan lui-même, <span className="font-semibold">sans sous-traitance</span>, pour garder la
+                      maîtrise complète de la qualité.
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-sky-400/15 text-[12px] text-sky-300 border border-sky-300/70">
+                      ✓
+                    </span>
+                    <p>
+                      <span className="font-semibold">Produits hydrofuges certifiés</span> adaptés aux matériaux de votre maison, testés et
+                      éprouvés dans la durée.
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-sky-400/15 text-[12px] text-sky-300 border border-sky-300/70">
+                      ✓
+                    </span>
+                    <p>
+                      <span className="font-semibold">Garantie écrite jusqu&apos;à 15 ans</span> sur la protection de vos supports, accompagnée d&apos;un
+                      compte-rendu complet.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-[26px] bg-white/85 backdrop-blur-md border border-sky-200/80 px-6 py-5 md:px-7 md:py-6 flex flex-col gap-3 shadow-[0_20px_60px_rgba(15,23,42,0.18)]">
+                <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-sky-700">
+                  Prêt à sécuriser votre maison ?
+                </p>
+                <p className="text-sm md:text-[15px] text-slate-700">
+                  Expliquez-nous votre projet en quelques phrases : nous vous rappelons rapidement pour planifier un diagnostic sur place et
+                  vous proposer la meilleure solution.
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-3">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-full bg-sky-400/60 text-white px-6 py-2.5 text-sm font-semibold hover:bg-sky-400/80 transition-colors shadow-[0_10px_30px_rgba(59,130,246,0.25)]"
+                  >
+                    Demander un rappel
+                  </a>
+                  <span className="text-[11px] text-slate-400">
+                    Réponse rapide • Diagnostic sur place • Devis détaillé
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ simple pour lever les freins */}
+      <section className="w-full py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="section-title">Questions fréquentes</h2>
+            <p className="section-subtitle">
+              Quelques réponses claires pour vous aider à avancer sereinement dans votre projet de rénovation extérieure.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <details className="group rounded-2xl border border-slate-200 bg-slate-50/60 px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4">
+                <h3 className="text-sm md:text-[15px] font-semibold text-slate-900">
+                  Combien de temps sont protégées mes toitures ou façades après intervention ?
+                </h3>
+                <span className="text-slate-400 text-xl group-open:rotate-45 transition-transform select-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-700 leading-relaxed">
+                Selon la nature du support et le traitement réalisé, la protection peut aller jusqu&apos;à 15 ans. Cette durée est précisée
+                sur votre devis puis sur votre garantie écrite, remise en fin de chantier.
+              </p>
+            </details>
+
+            <details className="group rounded-2xl border border-slate-200 bg-slate-50/60 px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4">
+                <h3 className="text-sm md:text-[15px] font-semibold text-slate-900">
+                  Vos produits sont-ils compatibles avec les anciennes maisons en pierre ?
+                </h3>
+                <span className="text-slate-400 text-xl group-open:rotate-45 transition-transform select-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-700 leading-relaxed">
+                Oui, nous sélectionnons des produits adaptés aux bâtis anciens, permettant à la pierre de continuer à respirer tout en la
+                protégeant durablement de l&apos;humidité et des micro-organismes.
+              </p>
+            </details>
+
+            <details className="group rounded-2xl border border-slate-200 bg-slate-50/60 px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer items-center justify-between gap-4">
+                <h3 className="text-sm md:text-[15px] font-semibold text-slate-900">
+                  Puis-je voir des exemples de chantiers avant de me décider ?
+                </h3>
+                <span className="text-slate-400 text-xl group-open:rotate-45 transition-transform select-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-700 leading-relaxed">
+                Bien sûr. Nous vous présentons des chantiers similaires au vôtre, avec photos avant / après et explication des traitements
+                réalisés. Vous pouvez également consulter nos réalisations directement sur le site.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
       {/* Contact CTA */}
       <ContactCTA />
 
