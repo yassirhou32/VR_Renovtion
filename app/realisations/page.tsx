@@ -259,6 +259,21 @@ export default function RealisationsPage() {
                     </div>
                     {/* fine ligne dégradée sous le contenu */}
                     <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
+                    {/* bouton voir réalisation */}
+                    <div className="mt-3">
+                      <a
+                        href={
+                          index === 0
+                            ? "/realisations/nettoyage-protection-toiture"
+                            : index === 1
+                            ? "/realisations/renovation-facade"
+                            : "/realisations/restauration-pierre"
+                        }
+                        className="inline-flex items-center justify-center rounded-full border border-slate-800 px-4 py-1.5 text-[11px] md:text-xs font-semibold tracking-[0.16em] uppercase text-slate-900 hover:bg-slate-900 hover:text-white transition-colors"
+                      >
+                        Voir la réalisation
+                      </a>
+                    </div>
                     {/* motif de points bas droit */}
                     <div className="pointer-events-none absolute right-5 bottom-5 grid grid-cols-3 gap-1.5 opacity-60">
                       <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />

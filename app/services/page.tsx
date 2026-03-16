@@ -9,20 +9,23 @@ const detailedServices = [
   {
     title: 'Entretien et protection de toiture',
     description:
-      'L’accumulation de mousses et de lichens rend vos matériaux poreux et fragiles. Nous procédons à un assainissement complet suivi de l’application d’un hydrofuge certifié. Ce traitement permet à l\'eau de ruisseler sans s\'imprégner, protégeant vos tuiles ou ardoises contre le gel et l\'érosion. Matériaux : tuiles et ardoises. Engagement : protection active garantie pendant 15 ans minimum.',
+      "Au fil des années, les mousses, lichens et dépôts polluants rendent vos tuiles ou ardoises poreuses. L'eau ne ruisselle plus correctement, s'infiltre dans les matériaux et fragilise toute la couverture. Nous commençons par un nettoyage minutieux (basse ou haute pression maîtrisée selon le support), puis par un démoussage en profondeur pour éliminer les micro-organismes. Ensuite, nous appliquons un hydrofuge certifié qui laisse respirer la toiture tout en bloquant l'eau en surface. Résultat : une couverture assainie, plus esthétique, et surtout protégée durablement contre le gel, l'humidité et l'usure.",
     icon: Home,
+    href: '/services/entretien-protection-toiture',
   },
   {
     title: 'Rénovation de façades',
     description:
       'Les traces rouges, noires ou la présence de champignons signalent une dégradation avancée de vos murs. Nous éliminons ces micro-organismes en profondeur et traitons les supports (crépis, enduits) pour bloquer l\'humidité tout en laissant respirer le bâti. Actions : nettoyage profond, élimination des moisissures et barrière hydrofuge. Nous traitons également les remontées capillaires pour stopper définitivement les traces d\'eau à la base de vos façades.',
     icon: Shield,
+    href: '/services/renovation-facades',
   },
   {
     title: 'Restauration de patrimoine',
     description:
       'Le piquetage permet de retirer les anciens joints dégradés pour mettre à nu la pierre d\'origine. Nous réalisons un rejointoiement artisanal qui renforce la solidité de la maçonnerie tout en valorisant le cachet architectural et la valeur de votre demeure. Usage : murs anciens en pierre de taille ou moellons.',
     icon: Hammer,
+    href: '/services/restauration-patrimoine',
   },
 ]
 
@@ -57,6 +60,7 @@ export default function ServicesPage() {
                 title={service.title}
                 description={service.description}
                 icon={service.icon}
+                href={service.href}
                 ctaText="En savoir plus"
               />
             ))}
