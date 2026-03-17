@@ -23,16 +23,17 @@ const GalleryFilmStrip: React.FC<GalleryFilmStripProps> = ({
     "/images/IMG_7463.jpeg",
     "/images/IMG_7468.jpeg",
   ],
-  backgroundColor = "#f0f0f0",
+  backgroundColor = "#000000",
   archiveText = "Archive toiture",
   figurePrefix = "FIG.",
   isoText = "ISO 400",
-  scrollHeight = "300vh",
+  scrollHeight = "350vh",
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // Une image par écran : 0% → -100% * (images.length - 1)
+  const maxOffset = (images.length - 1) * -100;
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `${maxOffset}%`]);
 
   return (
     <div
@@ -41,17 +42,24 @@ const GalleryFilmStrip: React.FC<GalleryFilmStripProps> = ({
       style={{ height: scrollHeight, backgroundColor }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 uppercase font-mono text-xs tracking-[1em] text-neutral-400">
+        <div className="mb-6 text-center uppercase font-mono text-[10px] tracking-[0.5em] text-neutral-400">
           {archiveText}
         </div>
 
-        <motion.div style={{ x }} className="flex gap-12 pl-[10vw]">
+        <motion.div
+          style={{ x }}
+          className="flex"
+          // chaque image occupe 100% de la largeur de l’écran
+        >
           {images.map((src, i) => (
-            <div key={i} className="flex flex-col gap-4 shrink-0">
-              <div className="relative w-[30vw] md:w-[22vw] aspect-3/4 overflow-hidden bg-neutral-300">
+            <div
+              key={i}
+              className="flex flex-col gap-3 shrink-0 w-screen px-6 md:px-12"
+            >
+              <div className="relative w-full max-w-4xl mx-auto aspect-[4/3] overflow-hidden bg-neutral-300">
                 <motion.img
-                  initial={{ scale: 1.2 }}
-                  whileHover={{ scale: 1 }}
+                  initial={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.5 }}
                   src={src}
                   loading="lazy"
@@ -66,7 +74,7 @@ const GalleryFilmStrip: React.FC<GalleryFilmStripProps> = ({
                   ))}
                 </div>
               </div>
-              <div className="flex justify-between text-xs font-mono text-neutral-500">
+              <div className="flex justify-between text-[10px] md:text-xs font-mono text-neutral-500 max-w-4xl mx-auto">
                 <span>
                   {figurePrefix} {i + 1}
                 </span>
@@ -75,19 +83,11 @@ const GalleryFilmStrip: React.FC<GalleryFilmStripProps> = ({
             </div>
           ))}
         </motion.div>
-
-        <div className="absolute bottom-12 w-full flex justify-center">
-          <div className="h-1 w-64 bg-neutral-300 rounded-full overflow-hidden">
-            <motion.div
-              style={{ width: progressWidth }}
-              className="h-full bg-black"
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
 export default GalleryFilmStrip;
+
 

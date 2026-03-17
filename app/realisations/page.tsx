@@ -304,22 +304,19 @@ export default function RealisationsPage() {
             </p>
           </div>
 
-          <div className="relative">
-            {/* ligne verticale */}
-            <div className="pointer-events-none absolute left-9 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-400/0 via-emerald-400/60 to-emerald-400/0" />
+          <div className="relative max-w-xl mx-auto">
+            {/* ligne verticale centrée */}
+            <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-400/0 via-emerald-400/60 to-emerald-400/0" />
 
-            <div className="space-y-5">
+            <div className="space-y-6">
               {processSteps.map((step) => (
-                <div
-                  key={step.number}
-                  className="relative pl-16"
-                >
+                <div key={step.number} className="relative flex flex-col items-center">
                   <div className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-emerald-400/70 bg-white text-emerald-700 text-xs font-semibold shadow-[0_0_0_1px_rgba(148,163,184,0.6)]">
                     {step.number}
                     <div className="pointer-events-none absolute -inset-1 rounded-full bg-emerald-500/20 blur-md" />
                   </div>
 
-                  <div className="mt-3 rounded-2xl bg-white border border-slate-200 px-5 py-4 shadow-[0_18px_60px_rgba(148,163,184,0.45)]">
+                  <div className="mt-3 w-full max-w-md rounded-2xl bg-white border border-slate-200 px-5 py-4 shadow-[0_18px_60px_rgba(148,163,184,0.45)]">
                     <h3 className="text-sm md:text-[15px] font-semibold text-slate-950 tracking-tight mb-1">
                       {step.title}
                     </h3>

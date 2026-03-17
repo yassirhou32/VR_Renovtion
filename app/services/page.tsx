@@ -300,7 +300,7 @@ export default function ServicesPage() {
                 </ul>
               </div>
 
-              <div className="rounded-[26px] bg-white/85 backdrop-blur-md border border-sky-200/80 px-6 py-5 md:px-7 md:py-6 flex flex-col gap-3 shadow-[0_20px_60px_rgba(15,23,42,0.18)]">
+              <div className="rounded-[26px] bg-white/85 backdrop-blur-md border border-sky-200/80 px-6 py-5 md:px-7 md:py-6 flex flex-col gap-3 shadow-[0_20px_60px_rgba(15,23,42,0.18)] max-w-lg mx-auto">
                 <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-sky-700">
                   Prêt à sécuriser votre maison ?
                 </p>
@@ -308,7 +308,7 @@ export default function ServicesPage() {
                   Expliquez-nous votre projet en quelques phrases : nous vous rappelons rapidement pour planifier un diagnostic sur place et
                   vous proposer la meilleure solution.
                 </p>
-                <div className="mt-2 flex flex-wrap items-center gap-3">
+                <div className="mt-2 flex flex-col items-center gap-2 text-center">
                   <a
                     href="/contact"
                     className="inline-flex items-center justify-center rounded-full bg-sky-400/60 text-white px-6 py-2.5 text-sm font-semibold hover:bg-sky-400/80 transition-colors shadow-[0_10px_30px_rgba(59,130,246,0.25)]"

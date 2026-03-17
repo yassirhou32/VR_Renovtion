@@ -9,7 +9,7 @@ export default function RestaurationPatrimoinePage() {
       <Navbar />
 
       {/* En-tête spécifique restauration de patrimoine */}
-      <section className="w-full py-16 md:py-20 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+      <section className="w-full pt-24 md:pt-28 pb-16 md:pb-20 bg-gradient-to-b from-slate-50 via-white to-slate-50">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center space-y-4">
             <div className="inline-flex items-center justify-center rounded-full bg-slate-900 text-slate-100 px-4 py-1 text-[11px] font-semibold tracking-[0.18em] uppercase">
