@@ -6,18 +6,22 @@ import { ContactCTA } from '@/components/contact-cta'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, CheckCircle2, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
+    projectType: '',
+    propertyType: '',
+    cityPostalCode: '',
+    estimatedBudget: '',
+    projectDetails: '',
+    fullName: '',
     email: '',
-    service: '',
-    message: '',
+    phone: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -26,20 +30,46 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, this would send data to a backend
-    console.log('Form submitted:', formData)
-    // Reset form
-    setFormData({
-      firstName: '',
-      lastName: '',
-      phone: '',
-      email: '',
-      service: '',
-      message: '',
-    })
-    alert('Merci de votre message! Nous vous répondrons bientôt.')
+    setSubmitMessage(null)
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Erreur pendant l envoi')
+      }
+
+      setFormData({
+        projectType: '',
+        propertyType: '',
+        cityPostalCode: '',
+        estimatedBudget: '',
+        projectDetails: '',
+        fullName: '',
+        email: '',
+        phone: '',
+      })
+      setSubmitMessage({
+        type: 'success',
+        text: 'Votre demande a bien ete envoyee. Nous vous recontactons rapidement.',
+      })
+    } catch {
+      setSubmitMessage({
+        type: 'error',
+        text: "L envoi a echoue. Merci de reessayer dans un instant.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -161,129 +191,193 @@ export default function ContactPage() {
                   Contactez-nous
                 </h2>
                 <p className="text-xs md:text-[13px] text-slate-500 mb-6 text-center">
-                  Quelques champs suffisent pour que nous puissions vous rappeler avec une première estimation.
+                  Indiquez votre besoin et vos coordonnees, nous vous rappelons rapidement.
                 </p>
 
               <form onSubmit={handleSubmit} className="relative space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label
-                      htmlFor="firstName"
+                      htmlFor="projectType"
                       className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
                     >
-                      Prénom
+                      Type de projet *
                     </label>
-                    <Input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
+                    <select
+                      id="projectType"
+                      name="projectType"
+                      value={formData.projectType}
                       onChange={handleChange}
                       required
-                      placeholder="Votre prénom"
-                    />
+                      className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                    >
+                      <option value="">Selectionnez un type</option>
+                      <option value="renovation">Renovation</option>
+                      <option value="extension">Extension</option>
+                      <option value="architecture-conception">Architecture & Conception</option>
+                      <option value="locaux-professionnels">Locaux Professionnels</option>
+                    </select>
                   </div>
                   <div>
                     <label
-                      htmlFor="lastName"
+                      htmlFor="propertyType"
                       className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
                     >
-                      Nom
+                      Type de bien *
                     </label>
-                    <Input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
+                    <select
+                      id="propertyType"
+                      name="propertyType"
+                      value={formData.propertyType}
                       onChange={handleChange}
                       required
-                      placeholder="Votre nom"
-                    />
+                      className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                    >
+                      <option value="">Selectionnez un type</option>
+                      <option value="maison">Maison</option>
+                      <option value="appartement">Appartement</option>
+                      <option value="commerce">Commerce</option>
+                      <option value="bureaux">Bureaux</option>
+                    </select>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="cityPostalCode"
                       className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
                     >
-                      Email
+                      Ville / Code postal *
                     </label>
                     <Input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
+                      type="text"
+                      id="cityPostalCode"
+                      name="cityPostalCode"
+                      value={formData.cityPostalCode}
                       onChange={handleChange}
                       required
-                      placeholder="votre.email@example.com"
+                      placeholder="Ex. Tours 37000"
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="phone"
+                      htmlFor="estimatedBudget"
                       className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
                     >
-                      Téléphone
+                      Budget estimatif
                     </label>
                     <Input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
+                      type="text"
+                      id="estimatedBudget"
+                      name="estimatedBudget"
+                      value={formData.estimatedBudget}
                       onChange={handleChange}
-                      required
-                      placeholder="Votre téléphone"
+                      placeholder="Optionnel"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label
-                    htmlFor="service"
+                    htmlFor="projectDetails"
                     className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
                   >
-                    Service souhaité
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
-                  >
-                    <option value="">Sélectionnez un service</option>
-                    <option value="toiture">Nettoyage et traitement de toiture</option>
-                    <option value="facade">Rénovation de façades</option>
-                    <option value="pierre">Piquetage et pierre apparente</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
-                  >
-                    Message
+                    Details du projet *
                   </label>
                   <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
+                    id="projectDetails"
+                    name="projectDetails"
+                    value={formData.projectDetails}
                     onChange={handleChange}
                     required
                     rows={6}
                     className="w-full rounded-lg border border-slate-200 px-3 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
-                    placeholder="Décrivez votre projet (type de support, surface, ville...)"
+                    placeholder="Decrivez votre projet, vos contraintes, vos attentes..."
                   ></textarea>
                 </div>
 
+                <div className="pt-1">
+                  <h3 className="text-sm font-semibold text-slate-800 mb-3">Vos coordonnees</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    <div>
+                      <label
+                        htmlFor="fullName"
+                        className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
+                      >
+                        Nom *
+                      </label>
+                      <Input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
+                      >
+                        Email *
+                      </label>
+                      <Input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-[0.16em]"
+                      >
+                        Telephone *
+                      </label>
+                      <Input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {submitMessage && (
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className={`rounded-xl border px-4 py-3 text-sm ${
+                      submitMessage.type === 'success'
+                        ? 'border-emerald-200 bg-emerald-50/80 text-emerald-800'
+                        : 'border-red-200 bg-red-50/80 text-red-800'
+                    }`}
+                  >
+                    <div className="flex items-start gap-2.5">
+                      {submitMessage.type === 'success' ? (
+                        <CheckCircle2 className="mt-0.5 h-4.5 w-4.5 shrink-0" />
+                      ) : (
+                        <AlertCircle className="mt-0.5 h-4.5 w-4.5 shrink-0" />
+                      )}
+                      <p className="leading-relaxed font-medium">{submitMessage.text}</p>
+                    </div>
+                  </div>
+                )}
+
                 <Button
                   type="submit"
+                  disabled={isSubmitting}
                   className="mt-4 w-full rounded-full bg-slate-900 hover:bg-slate-950 text-white py-3 text-sm font-semibold tracking-wide"
                 >
-                  Envoyer la demande
+                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer la demande'}
                 </Button>
               </form>
               </div>
